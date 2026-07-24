@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Sanshray Malhotra's computer science project portfolio.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <div class="computer-shell">
+      <header class="computer-label">
+        <span>SM-86 PERSONAL TERMINAL</span>
+        <span class="computer-label__status">SYSTEM READY</span>
+      </header>
+
+    <div class="computer-display-area">
+        <div class="screen-bezel">
+            <main class="crt-screen">
+            <slot />
+            </main>
+        </div>
+
+        <div class="side-panel" aria-hidden="true"></div>
+    </div>
+
+      <footer class="computer-controls" aria-hidden="true">
+        <span class="power-light"></span>
+        <span>POWER</span>
+        <span class="control-divider"></span>
+        <span>DISPLAY</span>
+        <span class="control-knob"></span>
+      </footer>
+    </div>
+  </body>
+</html>

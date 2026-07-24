@@ -1,23 +1,34 @@
+---
+import ComputerLayout from "../layouts/ComputerLayout.astro";
+---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
-  </head>
-  <body>
-    <main>
-      <section>
-        <h1>Contacts</h1>
+<ComputerLayout
+  title="Contact Sanshray | Computer Science Portfolio"
+  description="Contact Sanshray Malhotra by email or connect through LinkedIn."
+>
+  <article class="terminal-page">
+    <p class="terminal-prompt">C:\PORTFOLIO&gt; type contact.txt</p>
+    <h1>Contact</h1>
 
-        <section>
-        <h4>Contact Me:</h4>
-        <a href="https://www.linkedin.com/in/sanshray-malhotra-571045191/" target="_blank">Linkedin</a>
-        <p >Gmail: sanshray.malhotra@gmail.com</p>
-        </section>
-        <br>
-        <a href="/">Return to Home</a>
-      </section>
-    </main>
-  </body>
-</html>
+    <div class="resource-block">
+      <p>
+        EMAIL:
+        <a href="mailto:sanshray.malhotra@gmail.com">
+          sanshray.malhotra@gmail.com
+        </a>
+      </p>
+      <p>
+        LINKEDIN:
+        <a
+          href="https://www.linkedin.com/in/sanshray-malhotra-571045191/"
+          target="_blank"
+          rel="noopener noreferrer">View profile</a
+        >
+      </p>
+    </div>
+
+    <nav class="page-actions" aria-label="Page navigation">
+      <a href="/">[ RETURN HOME ]</a>
+    </nav>
+  </article>
+</ComputerLayout>

@@ -1,29 +1,41 @@
+---
+import ComputerLayout from "../layouts/ComputerLayout.astro";
+---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
-  </head>
-  <body>
-    <main>
-      <section>
-        <h1>Hephaestus</h1>
-        <p>Hephaestus is a story based spaceflight game born out of my love for spaceflight and the space race of the 
-            1960s. The entirety of the physics engine is self made using c++, allowing me to learn about advanced c++ techniques
-            and giving me an excuse to learn more about rocket science and orbital mechanics. The publically available code contains 
-            the physics engine as well as software to render a scaled model of the solar system as a whole, developed using unreal engine.
-            The rest of the game's software will remain close sourced as I would like Hephaestus to be built into a fully fledged game which 
-            I would like to be available for sale by mid 2027.
-        </p>
+<ComputerLayout
+  title="Hephaestus | Sanshray's Portfolio"
+  description="Hephaestus is a story-driven spaceflight game with a custom C++ physics engine."
+>
+  <article class="terminal-page">
+    <p class="terminal-prompt">C:\PORTFOLIO\PROJECTS&gt; type hephaestus.txt</p>
+    <h1>Hephaestus</h1>
 
-        <section>
-        <h4>Hepheastus Repository:</h4>
-        <a href="https://github.com/Sansh-M/Hephaestus" target="_blank">Hepheastus Spaceflight Game Engine</a>
-        </section>
-        <br>
-        <a href="/">Return to Home</a>
-      </section>
-    </main>
-  </body>
-</html>
+    <p>
+      Hephaestus is a story-based spaceflight game born from my interest in
+      spaceflight and the space race of the 1960s. I built its physics engine in
+      C++, which gives me an opportunity to learn advanced C++ techniques,
+      rocket science, and orbital mechanics.
+    </p>
+
+    <p>
+      The publicly available code contains the physics engine and software that
+      renders a scaled model of the solar system using Unreal Engine. The rest
+      of the game's software will remain closed source while I develop
+      Hephaestus into a complete game.
+    </p>
+
+    <div class="resource-block">
+      <p>STATUS: IN DEVELOPMENT</p>
+      <p>TECHNOLOGIES: C++ // UNREAL ENGINE // ORBITAL MECHANICS</p>
+      <a
+        href="https://github.com/Sansh-M/Hephaestus"
+        target="_blank"
+        rel="noopener noreferrer">[ OPEN GITHUB REPOSITORY ]</a
+      >
+    </div>
+
+    <nav class="page-actions" aria-label="Page navigation">
+      <a href="/">[ RETURN HOME ]</a>
+    </nav>
+  </article>
+</ComputerLayout>

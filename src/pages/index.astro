@@ -1,34 +1,41 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
+---
+import ComputerLayout from "../layouts/ComputerLayout.astro";
+---
 
-  <body>
-    <header>
-      <h1>Sanshray's Portfolio</h1>
-    </header>
+<ComputerLayout
+  title="Sanshray Malhotra | Computer Science Portfolio"
+  description="Computer science projects by Sanshray Malhotra, with a focus on full-stack development, embedded systems, and spaceflight."
+>
+  <header class="terminal-header">
+    <p class="terminal-prompt">C:\PORTFOLIO&gt; open profile.exe</p>
+    <h1>Sanshray's Portfolio</h1>
+    <p>Computer science graduate // aspiring full-stack developer</p>
+  </header>
 
-    <main>
-      <div>
-        <a href="/about">About me</a>
-        <br>
-        <a href="/Contacts">Contacts</a>
-               
-      </div>
+  <nav class="terminal-nav" aria-label="Primary navigation">
+    <a href="/about">[ ABOUT ME ]</a>
+    <a href="/Contacts">[ CONTACT ]</a>
+  </nav>
 
-      <section>
-        <h2>Projects </h2>
-        
-      </section>
-        <a href="/Hephaestus">Spaceflight game</a>
-        <br>
-        <a href="/VoiceDataSetBuilder">Voice Data Set Builder</a>
-      <section>
-        <img src="./images/kenny-south-park-south-park.gif">
-      </section>
-    </main>
+  <section class="project-directory" aria-labelledby="projects-heading">
+    <p class="terminal-prompt">C:\PORTFOLIO&gt; dir projects</p>
+    <h2 id="projects-heading">Project Directory</h2>
 
-  </body>
-</html>
+    <ul class="project-list">
+      <li>
+        <a href="/Hephaestus">
+          <span class="project-list__name">HEPHAESTUS</span>
+          <span class="project-list__description">Spaceflight game and physics engine</span>
+        </a>
+      </li>
+      <li>
+        <a href="/VoiceDataSetBuilder">
+          <span class="project-list__name">VOICE DATASET BUILDER</span>
+          <span class="project-list__description">Audio dataset creation tooling</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <p class="terminal-cursor" aria-hidden="true">C:\PORTFOLIO&gt; <span>_</span></p>
+</ComputerLayout>

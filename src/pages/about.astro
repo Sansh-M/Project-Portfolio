@@ -1,20 +1,31 @@
+---
+import ComputerLayout from "../layouts/ComputerLayout.astro";
+---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
-  </head>
-  <body>
-    <main>
-      <section>
-        <h1>About Me</h1>
-        <p>My name is Sanshray Malhotra,  am currently pursuing a bachelors degree in Computer Science at the Technical University of Eindhoven until 2026. 
-            I look forward to expanding my scope of knowledge in this field and am eager to get some hands on experience. 
-            I have a passion for manned spaceflight and the exploration of the cosmos, 
-            I will be working towards a career that allows me to apply my skillset to be part of that vision for the future.</p>
-        <a href="/">Return to Home</a>
-      </section>
-    </main>
-  </body>
-</html>
+<ComputerLayout
+  title="About Sanshray | Computer Science Portfolio"
+  description="Learn about Sanshray Malhotra's computer science background, interests, and development goals."
+>
+  <article class="terminal-page">
+    <p class="terminal-prompt">C:\PORTFOLIO&gt; type about.txt</p>
+    <h1>About Me</h1>
+
+    <p>
+      My name is Sanshray Malhotra. I am completing a bachelor's degree in
+      Computer Science at Eindhoven University of Technology in 2026. I look
+      forward to expanding my knowledge in this field and gaining hands-on
+      experience.
+    </p>
+
+    <p>
+      I have a passion for human spaceflight and the exploration of the cosmos.
+      I am working toward a career that allows me to apply my skills and become
+      part of that vision for the future.
+    </p>
+
+    <nav class="page-actions" aria-label="Page navigation">
+      <a href="/">[ RETURN HOME ]</a>
+      <a href="/Contacts">[ CONTACT ]</a>
+    </nav>
+  </article>
+</ComputerLayout>
