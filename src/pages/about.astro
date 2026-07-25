@@ -3,6 +3,8 @@ import ComputerLayout from "../layouts/ComputerLayout.astro";
 import DosCommandForm from "../components/DosCommandForm.astro";
 import HomeFallbackLink from "../components/HomeFallbackLink.astro";
 import QuickNavigation from "../components/QuickNavigation.astro";
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <ComputerLayout
@@ -14,7 +16,18 @@ import QuickNavigation from "../components/QuickNavigation.astro";
       <header class="about-record__header">
         <p class="terminal-prompt">C:\PORTFOLIO&gt; type about.txt</p>
         <p>FILE: ABOUT.TXT // STATUS: OPEN</p>
-        <h1 id="about-title">About Sanshray</h1>
+        <div class="about-record__identity">
+          <h1 id="about-title">About Sanshray</h1>
+          <figure class="about-record__portrait">
+            <img
+              src={`${baseUrl}images/sanshray-dos-portrait.png`}
+              width="1023"
+              height="1537"
+              alt="Portrait of Sanshray Malhotra in a green monochrome CRT style"
+              decoding="async"
+            />
+          </figure>
+        </div>
       </header>
 
       <div class="about-record__content">

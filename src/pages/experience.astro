@@ -1,0 +1,48 @@
+---
+import ComputerLayout from "../layouts/ComputerLayout.astro";
+import DosCommandForm from "../components/DosCommandForm.astro";
+import HomeFallbackLink from "../components/HomeFallbackLink.astro";
+import QuickNavigation from "../components/QuickNavigation.astro";
+---
+
+<ComputerLayout
+  title="Past Experience | Sanshray's Portfolio"
+  description="Past experience and professional development records for Sanshray Malhotra."
+>
+  <section class="about-page" aria-labelledby="experience-title">
+    <article class="about-record">
+      <header class="about-record__header">
+        <p class="terminal-prompt">
+          C:\PORTFOLIO&gt; type experience.txt
+        </p>
+        <p>FILE: EXPERIENCE.TXT // STATUS: OPEN</p>
+        <h1 id="experience-title">Past Experience</h1>
+      </header>
+
+      <div class="about-record__content">
+        <section aria-labelledby="experience-log-heading">
+          <h2 id="experience-log-heading">[ Experience Log ]</h2>
+          <p>
+            Developer - Team Hart [2025-2026]
+          </p>
+        </section>
+
+        <section aria-labelledby="record-format-heading">
+          <h2 id="record-format-heading">[ Education ]</h2>
+          <p>
+            IB Diploma - Internation School Eindhoven, Grade 38/45
+            Bachelor's Computer Science - Technical University of Eindhoven
+          </p>
+        </section>
+      </div>
+
+      <DosCommandForm
+        prompt="C:\\PORTFOLIO\\EXPERIENCE>"
+        autofocus={true}
+      />
+      <HomeFallbackLink />
+    </article>
+
+    <QuickNavigation current="experience" />
+  </section>
+</ComputerLayout>

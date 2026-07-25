@@ -1,6 +1,6 @@
 ---
 interface Props {
-  current?: "home" | "about" | "contacts";
+  current?: "home" | "about" | "experience" | "projects" | "contacts";
 }
 
 const { current } = Astro.props;
@@ -9,6 +9,7 @@ const baseUrl = import.meta.env.BASE_URL;
 const destinations = [
   { key: "home", label: "Home", path: "" },
   { key: "about", label: "About", path: "about/" },
+  { key: "experience", label: "Experience", path: "experience/" },
   { key: "projects", label: "Projects", path: "projects/" },
   { key: "contacts", label: "Contacts", path: "Contacts/" },
 ].filter((destination) => destination.key !== current);

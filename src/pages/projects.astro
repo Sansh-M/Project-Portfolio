@@ -60,7 +60,11 @@ import HomeFallbackLink from "../components/HomeFallbackLink.astro";
       TYPE THE NAME OF THE PROJECT YOU'D LIKE TO ENTER OR CLICK ON IT
     </p>
 
-    <DosCommandForm prompt="C:\\PORTFOLIO\\PROJECTS>" autofocus={true} />
+    <DosCommandForm
+      prompt="C:\\PORTFOLIO\\PROJECTS>"
+      autofocus={true}
+      projectCommands={true}
+    />
     <HomeFallbackLink />
   </section>
 </ComputerLayout>

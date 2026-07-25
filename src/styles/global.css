@@ -297,10 +297,13 @@ a {
 }
 
 .screen-bezel {
+  --screen-inset: clamp(0.55rem, 1.6vw, 1.1rem);
+
   min-height: 0;
   display: flex;
+  position: relative;
   overflow: hidden;
-  padding: clamp(0.55rem, 1.6vw, 1.1rem);
+  padding: var(--screen-inset);
   border: 1px solid #55594f;
   border-right-color: #1b1d1a;
   border-bottom-color: #1b1d1a;
@@ -309,6 +312,63 @@ a {
   box-shadow:
     inset 0.4rem 0.4rem 0.8rem rgba(0, 0, 0, 0.72),
     inset -0.12rem -0.12rem 0.3rem rgba(255, 255, 255, 0.06);
+}
+
+/* These layers stay fixed over the scrolling page like effects on CRT glass. */
+.screen-bezel::before,
+.screen-bezel::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: var(--screen-inset);
+  pointer-events: none;
+  border-radius: 14% / 18%;
+}
+
+.screen-bezel::before {
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 58%,
+      rgba(0, 0, 0, 0.22) 100%
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(255, 72, 72, 0.018) 0,
+      rgba(255, 72, 72, 0.018) 1px,
+      rgba(80, 255, 128, 0.012) 1px,
+      rgba(80, 255, 128, 0.012) 2px,
+      rgba(82, 125, 255, 0.018) 2px,
+      rgba(82, 125, 255, 0.018) 3px
+    );
+  opacity: 0.72;
+  animation: crt-phosphor-flicker 8s steps(1, end) infinite;
+}
+
+.screen-bezel::after {
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 45%,
+      rgba(83, 255, 120, 0.04) 50%,
+      transparent 55%,
+      transparent 100%
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 3px,
+      rgba(0, 0, 0, 0.18) 4px
+    );
+  background-position:
+    0 -120%,
+    0 0;
+  background-size:
+    100% 220%,
+    100% 4px;
+  opacity: 0.88;
+  animation: crt-refresh-roll 12s linear infinite;
 }
 
 .crt-screen {
@@ -352,20 +412,6 @@ a {
 
 .crt-screen::-webkit-scrollbar {
   display: none;
-}
-
-.crt-screen::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 3px,
-    rgba(0, 0, 0, 0.2) 4px
-  );
 }
 
 .terminal-header h1 {
@@ -614,6 +660,40 @@ a {
   font-size: clamp(2rem, 5vw, 4.25rem);
   line-height: 0.95;
   text-transform: uppercase;
+}
+
+.about-record__identity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(6rem, 15vw, 9rem);
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  margin-top: 0.45rem;
+}
+
+.about-record__identity h1 {
+  margin: 0;
+}
+
+.about-record__portrait {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(83, 255, 120, 0.68);
+  background: var(--screen);
+  box-shadow:
+    0 0 0 2px rgba(2, 9, 5, 0.9),
+    0 0 0.85rem rgba(83, 255, 120, 0.24),
+    inset 0 0 0.8rem rgba(0, 0, 0, 0.75);
+}
+
+.about-record__portrait img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 32%;
+  filter: brightness(1.16) contrast(1.05);
 }
 
 .about-record__content {
@@ -1174,6 +1254,33 @@ a {
   }
 }
 
+@keyframes crt-phosphor-flicker {
+  0%,
+  47%,
+  49%,
+  82%,
+  84%,
+  100% {
+    opacity: 0.72;
+  }
+
+  48% {
+    opacity: 0.66;
+  }
+
+  83% {
+    opacity: 0.78;
+  }
+}
+
+@keyframes crt-refresh-roll {
+  to {
+    background-position:
+      0 120%,
+      0 0;
+  }
+}
+
 @keyframes orbit-spin {
   to {
     transform: rotate(360deg);
@@ -1188,6 +1295,11 @@ a {
 
 @media (max-width: 42rem) {
   .crt-screen {
+    border-radius: 1.5rem;
+  }
+
+  .screen-bezel::before,
+  .screen-bezel::after {
     border-radius: 1.5rem;
   }
 
@@ -1235,7 +1347,9 @@ a {
   .terminal-cursor span,
   .dos-command-cursor,
   .orbit-carrier,
-  .orbit-project__body {
+  .orbit-project__body,
+  .screen-bezel::before,
+  .screen-bezel::after {
     animation: none;
   }
 }
