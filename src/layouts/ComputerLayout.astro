@@ -23,28 +23,40 @@ const {
 
   <body>
     <div class="computer-shell">
-      <header class="computer-label">
-        <span>SM-86 PERSONAL TERMINAL</span>
-        <span class="computer-label__status">SYSTEM READY</span>
-      </header>
+      <header class="computer-label" aria-hidden="true"></header>
 
-    <div class="computer-display-area">
+      <div class="computer-display-area">
         <div class="screen-bezel">
-            <main class="crt-screen">
+          <main class="crt-screen">
             <slot />
-            </main>
+          </main>
         </div>
 
-        <div class="side-panel" aria-hidden="true"></div>
-    </div>
+        <div class="side-panel" aria-hidden="true">
+          <div class="terminal-badge">
+            <span class="terminal-badge__mark">SM</span>
+            <span class="terminal-badge__label">Personal Terminal</span>
+          </div>
 
-      <footer class="computer-controls" aria-hidden="true">
-        <span class="power-light"></span>
-        <span>POWER</span>
-        <span class="control-divider"></span>
-        <span>DISPLAY</span>
-        <span class="control-knob"></span>
-      </footer>
+          <div class="monitor-controls">
+            <span class="monitor-knob monitor-knob--power"></span>
+            <span class="monitor-knob monitor-knob--brightness"></span>
+          </div>
+
+          <div class="panel-status-lights">
+            <span class="panel-status-light">
+              <span class="panel-status-light__lamp panel-status-light__lamp--power"></span>
+              <span class="panel-status-light__label">Power</span>
+            </span>
+            <span class="panel-status-light">
+              <span class="panel-status-light__lamp panel-status-light__lamp--ready"></span>
+              <span class="panel-status-light__label">Ready</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="computer-controls" aria-hidden="true"></footer>
     </div>
   </body>
 </html>
