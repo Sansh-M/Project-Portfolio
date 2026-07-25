@@ -1,0 +1,176 @@
+---
+interface Props {
+  prompt?: string;
+  autofocus?: boolean;
+}
+
+const {
+  prompt = "C:\\PORTFOLIO>",
+  autofocus = false,
+} = Astro.props;
+---
+
+<div class="dos-command-shell">
+  <form
+    class="dos-command-form"
+    autocomplete="off"
+    data-autofocus={autofocus ? "true" : undefined}
+  >
+    <label for="dos-command-input">{prompt}</label>
+    <span class="dos-command-entry">
+      <input
+        class="dos-command-input"
+        id="dos-command-input"
+        name="command"
+        type="text"
+        aria-describedby="dos-command-reference dos-command-output"
+        autocapitalize="off"
+        spellcheck="false"
+        enterkeyhint="go"
+      />
+      <span class="dos-command-cursor" aria-hidden="true"></span>
+    </span>
+    <button class="visually-hidden" type="submit">Run command</button>
+  </form>
+
+  <div class="dos-command-reference" id="dos-command-reference">
+    <span>AVAILABLE COMMANDS:</span>
+    <ul>
+      <li><kbd>HOME</kbd></li>
+      <li><kbd>ABOUT</kbd></li>
+      <li><kbd>CONTACTS</kbd></li>
+      <li><kbd>PROJECTS</kbd></li>
+    </ul>
+  </div>
+
+  <output
+    class="dos-command-output"
+    id="dos-command-output"
+    aria-live="polite"
+  ></output>
+</div>
+
+<script>
+  const destinations = new Map([
+    ["home", ""],
+    ["about", "about/"],
+    ["contact", "Contacts/"],
+    ["contacts", "Contacts/"],
+    ["projects", "projects/"],
+  ]);
+
+  const displayedCommands = ["home", "about", "contacts", "projects"];
+
+  const getEditDistance = (first: string, second: string) => {
+    const previousRow = Array.from(
+      { length: second.length + 1 },
+      (_, index) => index,
+    );
+
+    for (let firstIndex = 1; firstIndex <= first.length; firstIndex += 1) {
+      const currentRow = [firstIndex];
+
+      for (
+        let secondIndex = 1;
+        secondIndex <= second.length;
+        secondIndex += 1
+      ) {
+        const insertion = currentRow[secondIndex - 1] + 1;
+        const deletion = previousRow[secondIndex] + 1;
+        const substitution =
+          previousRow[secondIndex - 1] +
+          (first[firstIndex - 1] === second[secondIndex - 1] ? 0 : 1);
+
+        currentRow.push(Math.min(insertion, deletion, substitution));
+      }
+
+      previousRow.splice(0, previousRow.length, ...currentRow);
+    }
+
+    return previousRow[second.length];
+  };
+
+  const findClosestCommand = (command: string) =>
+    displayedCommands
+      .map((candidate) => ({
+        candidate,
+        distance: getEditDistance(command, candidate),
+      }))
+      .sort((first, second) => first.distance - second.distance)[0];
+
+  document
+    .querySelectorAll<HTMLFormElement>(
+      ".dos-command-form:not([data-command-ready])",
+    )
+    .forEach((form) => {
+      const input = form.querySelector(".dos-command-input");
+      const entry = form.querySelector(".dos-command-entry");
+      const shell = form.closest(".dos-command-shell");
+      const output = shell?.querySelector(".dos-command-output");
+
+      if (
+        !(input instanceof HTMLInputElement) ||
+        !(entry instanceof HTMLElement) ||
+        !(output instanceof HTMLOutputElement)
+      ) {
+        return;
+      }
+
+      form.dataset.commandReady = "true";
+      const siteRoot = new URL(import.meta.env.BASE_URL, window.location.origin);
+
+      const updateCursorPosition = () => {
+        entry.style.setProperty("--command-length", `${input.value.length}`);
+      };
+
+      input.addEventListener("input", updateCursorPosition);
+      updateCursorPosition();
+
+      if (form.dataset.autofocus === "true") {
+        requestAnimationFrame(() => input.focus({ preventScroll: true }));
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const enteredCommand = input.value.trim();
+        const command = enteredCommand
+          .toLowerCase()
+          .replaceAll("/", "\\")
+          .replace(/\s+/g, " ");
+
+        if (command.length === 0) {
+          output.textContent =
+            "No command entered. Choose one of the commands shown below.";
+          input.focus();
+          return;
+        }
+
+        if (command.length > 32) {
+          output.textContent =
+            "Command is too long. Navigation commands are single words.";
+          input.select();
+          return;
+        }
+
+        const destination = destinations.get(command);
+
+        if (destination !== undefined) {
+          window.location.assign(new URL(destination, siteRoot));
+          return;
+        }
+
+        const closestCommand = findClosestCommand(command);
+        const suggestionLimit = Math.max(
+          1,
+          Math.floor(closestCommand.candidate.length / 3),
+        );
+
+        output.textContent =
+          closestCommand.distance <= suggestionLimit
+            ? `'${enteredCommand}' is not recognized. Did you mean ${closestCommand.candidate.toUpperCase()}?`
+            : `'${enteredCommand}' is not recognized. Choose a command shown below.`;
+        input.select();
+      });
+    });
+</script>

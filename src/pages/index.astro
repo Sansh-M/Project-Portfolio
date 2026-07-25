@@ -1,41 +1,24 @@
 ---
 import ComputerLayout from "../layouts/ComputerLayout.astro";
+import DosCommandForm from "../components/DosCommandForm.astro";
+import QuickNavigation from "../components/QuickNavigation.astro";
 ---
 
 <ComputerLayout
   title="Sanshray Malhotra | Computer Science Portfolio"
   description="Computer science projects by Sanshray Malhotra, with a focus on full-stack development, embedded systems, and spaceflight."
 >
-  <header class="terminal-header">
-    <p class="terminal-prompt">C:\PORTFOLIO&gt; open profile.exe</p>
-    <h1>Sanshray's Portfolio</h1>
-    <p>Computer science graduate // aspiring full-stack developer</p>
-  </header>
+  <section class="home-page" aria-labelledby="portfolio-title">
+    <div class="home-page__main">
+      <header class="terminal-header terminal-header--home">
+        <p class="terminal-prompt">C:\PORTFOLIO&gt; open profile.exe</p>
+        <h1 id="portfolio-title">Sanshray's Portfolio</h1>
+        <p>Bachelor's Computer Science @TU Eindhoven // aspiring full-stack developer</p>
+      </header>
 
-  <nav class="terminal-nav" aria-label="Primary navigation">
-    <a href="/about">[ ABOUT ME ]</a>
-    <a href="/Contacts">[ CONTACT ]</a>
-  </nav>
+      <DosCommandForm autofocus={true} />
+    </div>
 
-  <section class="project-directory" aria-labelledby="projects-heading">
-    <p class="terminal-prompt">C:\PORTFOLIO&gt; dir projects</p>
-    <h2 id="projects-heading">Project Directory</h2>
-
-    <ul class="project-list">
-      <li>
-        <a href="/Hephaestus">
-          <span class="project-list__name">HEPHAESTUS</span>
-          <span class="project-list__description">Spaceflight game and physics engine</span>
-        </a>
-      </li>
-      <li>
-        <a href="/VoiceDataSetBuilder">
-          <span class="project-list__name">VOICE DATASET BUILDER</span>
-          <span class="project-list__description">Audio dataset creation tooling</span>
-        </a>
-      </li>
-    </ul>
+    <QuickNavigation current="home" />
   </section>
-
-  <p class="terminal-cursor" aria-hidden="true">C:\PORTFOLIO&gt; <span>_</span></p>
 </ComputerLayout>

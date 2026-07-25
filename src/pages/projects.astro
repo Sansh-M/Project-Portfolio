@@ -1,0 +1,66 @@
+---
+import ComputerLayout from "../layouts/ComputerLayout.astro";
+import DosCommandForm from "../components/DosCommandForm.astro";
+import HomeFallbackLink from "../components/HomeFallbackLink.astro";
+---
+
+<ComputerLayout
+  title="Projects | Sanshray Malhotra"
+  description="An orbital directory of Sanshray Malhotra's computer science projects."
+>
+  <section class="projects-page" aria-labelledby="projects-title">
+    <header class="projects-page__header">
+      <p>ORBITAL PROJECT INDEX // ONLINE</p>
+      <h1 id="projects-title">Sanshray's Projects</h1>
+    </header>
+
+    <div class="orbit-system" aria-label="Animated project directory">
+      <div class="orbit-system__axis" aria-hidden="true">
+        <span>00</span>
+        <span>PROJECTS</span>
+      </div>
+
+      <div class="orbit-track orbit-track--inner">
+        <div class="orbit-carrier">
+          <a
+            class="orbit-project"
+            href="/Hephaestus"
+            aria-label="Open the Hephaestus project"
+          >
+            <span class="orbit-project__body">
+              <span>HEPHAE<br />STUS</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="orbit-track orbit-track--outer">
+        <div class="orbit-carrier">
+          <a
+            class="orbit-project"
+            href="/VoiceDataSetBuilder"
+            aria-label="Open the Voice Dataset Builder project"
+          >
+            <span class="orbit-project__body orbit-project__body--voice">
+              <span>VOICE<br />DATA</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <span class="orbit-coordinate orbit-coordinate--x" aria-hidden="true">
+        X+
+      </span>
+      <span class="orbit-coordinate orbit-coordinate--y" aria-hidden="true">
+        Y+
+      </span>
+    </div>
+
+    <p class="projects-page__instruction">
+      TYPE THE NAME OF THE PROJECT YOU'D LIKE TO ENTER OR CLICK ON IT
+    </p>
+
+    <DosCommandForm prompt="C:\\PORTFOLIO\\PROJECTS>" autofocus={true} />
+    <HomeFallbackLink />
+  </section>
+</ComputerLayout>

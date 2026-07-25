@@ -1,24 +1,54 @@
+---
+import ComputerLayout from "../layouts/ComputerLayout.astro";
+import DosCommandForm from "../components/DosCommandForm.astro";
+import HomeFallbackLink from "../components/HomeFallbackLink.astro";
+import QuickNavigation from "../components/QuickNavigation.astro";
+---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
-    <link rel="stylesheet" href="styles/global.css">
-  </head>
-  <body>
-    <main>
-      <section>
-        <h1>Contacts</h1>
+<ComputerLayout
+  title="Contact Sanshray | Computer Science Portfolio"
+  description="Contact Sanshray Malhotra through LinkedIn or email."
+>
+  <section class="contact-page" aria-labelledby="contact-title">
+    <article class="contact-record">
+      <header class="contact-record__header">
+        <p class="terminal-prompt">C:\PORTFOLIO&gt; open contacts.exe</p>
+        <p>DIRECTORY: CONTACTS // STATUS: ONLINE</p>
+        <h1 id="contact-title">Contact Sanshray</h1>
+      </header>
 
-        <section>
-        <h4>Contact Me:</h4>
-        <a href="https://www.linkedin.com/in/sanshray-malhotra-571045191/" target="_blank">Linkedin</a>
-        <p >Gmail: sanshray.malhotra@gmail.com</p>
-        </section>
-        <br>
-        <a href="/">Return to Home</a>
-      </section>
-    </main>
-  </body>
-</html>
+      <div class="contact-directory" aria-label="Contact methods">
+        <a
+          class="contact-entry"
+          href="https://www.linkedin.com/in/sanshray-malhotra-571045191/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span aria-hidden="true">[01]</span>
+          <span>
+            <strong>LinkedIn</strong>
+            <small>Professional profile</small>
+          </span>
+          <span aria-hidden="true">OPEN &gt;</span>
+        </a>
+
+        <a
+          class="contact-entry"
+          href="mailto:sanshray.malhotra@gmail.com"
+        >
+          <span aria-hidden="true">[02]</span>
+          <span>
+            <strong>Email</strong>
+            <small>sanshray.malhotra@gmail.com</small>
+          </span>
+          <span aria-hidden="true">SEND &gt;</span>
+        </a>
+      </div>
+
+      <DosCommandForm prompt="C:\\PORTFOLIO\\CONTACTS>" autofocus={true} />
+      <HomeFallbackLink />
+    </article>
+
+    <QuickNavigation current="contacts" />
+  </section>
+</ComputerLayout>

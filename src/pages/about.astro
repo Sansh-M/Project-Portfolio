@@ -1,31 +1,47 @@
 ---
 import ComputerLayout from "../layouts/ComputerLayout.astro";
+import DosCommandForm from "../components/DosCommandForm.astro";
+import HomeFallbackLink from "../components/HomeFallbackLink.astro";
+import QuickNavigation from "../components/QuickNavigation.astro";
 ---
 
 <ComputerLayout
   title="About Sanshray | Computer Science Portfolio"
   description="Learn about Sanshray Malhotra's computer science background, interests, and development goals."
 >
-  <article class="terminal-page">
-    <p class="terminal-prompt">C:\PORTFOLIO&gt; type about.txt</p>
-    <h1>About Me</h1>
+  <section class="about-page" aria-labelledby="about-title">
+    <article class="about-record">
+      <header class="about-record__header">
+        <p class="terminal-prompt">C:\PORTFOLIO&gt; type about.txt</p>
+        <p>FILE: ABOUT.TXT // STATUS: OPEN</p>
+        <h1 id="about-title">About Sanshray</h1>
+      </header>
 
-    <p>
-      My name is Sanshray Malhotra. I am completing a bachelor's degree in
-      Computer Science at Eindhoven University of Technology in 2026. I look
-      forward to expanding my knowledge in this field and gaining hands-on
-      experience.
-    </p>
+      <div class="about-record__content">
+        <section aria-labelledby="profile-heading">
+          <h2 id="profile-heading">[ Profile ]</h2>
+          <p>
+            My name is Sanshray Malhotra. I am completing a bachelor's degree
+            in Computer Science at Eindhoven University of Technology in 2026.
+            I look forward to expanding my knowledge in this field and gaining
+            hands-on experience.
+          </p>
+        </section>
 
-    <p>
-      I have a passion for human spaceflight and the exploration of the cosmos.
-      I am working toward a career that allows me to apply my skills and become
-      part of that vision for the future.
-    </p>
+        <section aria-labelledby="mission-heading">
+          <h2 id="mission-heading">[ Mission ]</h2>
+          <p>
+            I have a passion for human spaceflight and the exploration of the
+            cosmos. I am working toward a career that allows me to apply my
+            skills and become part of that vision for the future.
+          </p>
+        </section>
+      </div>
 
-    <nav class="page-actions" aria-label="Page navigation">
-      <a href="/">[ RETURN HOME ]</a>
-      <a href="/Contacts">[ CONTACT ]</a>
-    </nav>
-  </article>
+      <DosCommandForm prompt="C:\\PORTFOLIO\\ABOUT>" autofocus={true} />
+      <HomeFallbackLink />
+    </article>
+
+    <QuickNavigation current="about" />
+  </section>
 </ComputerLayout>

@@ -1,5 +1,7 @@
 ---
 import ComputerLayout from "../layouts/ComputerLayout.astro";
+import DosCommandForm from "../components/DosCommandForm.astro";
+import HomeFallbackLink from "../components/HomeFallbackLink.astro";
 ---
 
 <ComputerLayout
@@ -36,8 +38,10 @@ import ComputerLayout from "../layouts/ComputerLayout.astro";
       >
     </div>
 
-    <nav class="page-actions" aria-label="Page navigation">
-      <a href="/">[ RETURN HOME ]</a>
-    </nav>
+    <DosCommandForm
+      prompt="C:\\PORTFOLIO\\PROJECTS\\VOICE-DATA>"
+      autofocus={true}
+    />
+    <HomeFallbackLink />
   </article>
 </ComputerLayout>

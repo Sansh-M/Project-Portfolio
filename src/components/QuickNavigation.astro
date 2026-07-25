@@ -1,0 +1,38 @@
+---
+interface Props {
+  current?: "home" | "about" | "contacts";
+}
+
+const { current } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+
+const destinations = [
+  { key: "home", label: "Home", path: "" },
+  { key: "about", label: "About", path: "about/" },
+  { key: "projects", label: "Projects", path: "projects/" },
+  { key: "contacts", label: "Contacts", path: "Contacts/" },
+].filter((destination) => destination.key !== current);
+---
+
+<aside class="quick-navigation" aria-labelledby="quick-navigation-title">
+  <h2 id="quick-navigation-title">Quick Navigation</h2>
+  <p>SELECT DESTINATION</p>
+
+  <nav aria-label="Quick navigation">
+    <ul>
+      {
+        destinations.map((destination, index) => (
+          <li>
+            <a href={`${baseUrl}${destination.path}`}>
+              <span aria-hidden="true">
+                [{String(index + 1).padStart(2, "0")}]
+              </span>
+              <span>{destination.label}</span>
+              <span aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</aside>
